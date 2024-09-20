@@ -1,16 +1,11 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-
-const Jst = () => {
-  return (
-    <>
-      <h1>Hlo</h1>
-    </>
-  );
-};
+import HomePage from "./pages/home/home.pages";
+import "./assets/global.css";
+import "flowbite";
 
 createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <Jst />
+    <HomePage />
   </React.StrictMode>
 );
