@@ -11,7 +11,7 @@ const HomeTitleComponent = ({ title, link }: HomeTitleComponentProps) => {
         <>
           <a
             href={link}
-            className="bg-slate-300 p-[5px] text-slate-500 rounded-sm hover:text-teal-900 font-semibold"
+            className="bg-slate-300 p-[5px] text-slate-500 rounded-md hover:text-teal-900 font-semibold"
           >
             View all &rarr;
           </a>
