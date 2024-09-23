@@ -1,5 +1,11 @@
 import React from "react";
 import "./home.pages.css";
+import { Carousel } from "flowbite-react";
+import banner1 from "../../assets/images/banners/banner4.jpg";
+import banner2 from "../../assets/images/banners/banner5.jpg";
+import banner3 from "../../assets/images/banners/banner6.jpg";
+import HomeTitleComponent from "../../components/common/home-title/home-title.components";
+import HomeNavItemsComponents from "../../components/common/home-nav-items/home-nav-items.components";
 
 const HomePage: React.FC = () => {
   return (
@@ -24,51 +30,10 @@ const HomePage: React.FC = () => {
               </div>
 
               <ul className="hidden lg:flex items-center justify-start gap-6 md:gap-8 py-3 sm:justify-center">
-                <li>
-                  <a
-                    href="#"
-                    title=""
-                    className="flex text-sm font-medium text-gray-900 hover:text-primary-700 dark:text-white dark:hover:text-primary-500"
-                  >
-                    Home
-                  </a>
-                </li>
-                <li className="shrink-0">
-                  <a
-                    href="#"
-                    title=""
-                    className="flex text-sm font-medium text-gray-900 hover:text-primary-700 dark:text-white dark:hover:text-primary-500"
-                  >
-                    Best Sellers
-                  </a>
-                </li>
-                <li className="shrink-0">
-                  <a
-                    href="#"
-                    title=""
-                    className="flex text-sm font-medium text-gray-900 hover:text-primary-700 dark:text-white dark:hover:text-primary-500"
-                  >
-                    Gift Ideas
-                  </a>
-                </li>
-                <li className="shrink-0">
-                  <a
-                    href="#"
-                    title=""
-                    className="text-sm font-medium text-gray-900 hover:text-primary-700 dark:text-white dark:hover:text-primary-500"
-                  >
-                    Today's Deals
-                  </a>
-                </li>
-                <li className="shrink-0">
-                  <a
-                    href="#"
-                    title=""
-                    className="text-sm font-medium text-gray-900 hover:text-primary-700 dark:text-white dark:hover:text-primary-500"
-                  >
-                    Sell
-                  </a>
-                </li>
+                <HomeNavItemsComponents itemsName="Home" link="/" />
+                <HomeNavItemsComponents itemsName="Categories" link="/categories" />
+                <HomeNavItemsComponents itemsName="Brands" link="/brands" />
+                <HomeNavItemsComponents itemsName="Products" link="/products" />
               </ul>
             </div>
 
@@ -582,6 +547,50 @@ const HomePage: React.FC = () => {
           </div>
         </div>
       </nav>
+
+      <div className="h-[521px] bg-gray-400">
+        <Carousel slideInterval={5000}>
+          <div className="flex h-full items-center  justify-center bg-gray-400 dark:bg-gray-700 dark:text-white">
+            <a href="">
+              <img src={banner3} alt="" />
+            </a>
+          </div>
+          <div className="flex h-full items-center justify-center bg-gray-400 dark:bg-gray-700 dark:text-white">
+            <a href="">
+              <img src={banner1} alt="" />
+            </a>
+          </div>
+          <div className="flex h-full items-center justify-center bg-gray-400 dark:bg-gray-700 dark:text-white">
+            <a href="">
+              <img src={banner2} alt="" />
+            </a>
+          </div>
+        </Carousel>
+      </div>
+
+      <div className="bg-slate-200 mt-5">
+        <div className="max-w-screen-xl px-4 mx-auto 2xl:px-0 py-4 ">
+          <div className="flex items-center justify-between ">
+            <HomeTitleComponent title="Category" link="/categories" />
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-slate-200 mt-5">
+        <div className="max-w-screen-xl px-4 mx-auto 2xl:px-0 py-4 ">
+          <div className="flex items-center justify-between ">
+            <HomeTitleComponent title="Brands" link="/brands" />
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-slate-200 mt-5">
+        <div className="max-w-screen-xl px-4 mx-auto 2xl:px-0 py-4 ">
+          <div className="flex items-center justify-between ">
+            <HomeTitleComponent title="Products" link="/products" />
+          </div>
+        </div>
+      </div>
     </>
   );
 };
