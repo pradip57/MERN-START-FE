@@ -2,12 +2,12 @@ import { Carousel } from "flowbite-react";
 import banner1 from "../../assets/images/banners/banner4.jpg";
 import banner2 from "../../assets/images/banners/banner5.jpg";
 import banner3 from "../../assets/images/banners/banner6.jpg";
-import HomeBannerSliderComponent from "../../components/common/home-banner-slider/home-banner-slider.components";
+import HomeBannerSliderComponent from "../common/home-banner-slider/home-banner-slider.components";
 
-const BannerSliderComponent = () => {
+const BannerSliderMainComponent = () => {
   return (
     <>
-      <div className="h-[521px] bg-gray-400">
+      <div>
         <Carousel slideInterval={5000}>
           <HomeBannerSliderComponent
             image_src={banner1}
@@ -30,4 +30,4 @@ const BannerSliderComponent = () => {
   );
 };
 
-export default BannerSliderComponent;
+export default BannerSliderMainComponent;

@@ -1,6 +1,13 @@
+import { useState } from "react";
 import HomeNavItemsComponents from "../../components/common/home-nav-items/home-nav-items.components";
 
+export interface UserProps {
+  name: string;
+}
+
 const HeaderComponent = () => {
+  const [user, setUser] = useState<UserProps>({ name: "Pradip" });
+
   return (
     <>
       <nav className="bg-slate-200 dark:bg-gray-800 antialiased">
@@ -132,206 +139,10 @@ const HeaderComponent = () => {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2">
-                  <div>
-                    <a
-                      href="#"
-                      className="truncate text-sm font-semibold leading-none text-gray-900 dark:text-white hover:underline"
-                    >
-                      Apple iPad Air
-                    </a>
-                    <p className="mt-0.5 truncate text-sm font-normal text-gray-500 dark:text-gray-400">
-                      $499
-                    </p>
-                  </div>
-
-                  <div className="flex items-center justify-end gap-6">
-                    <p className="text-sm font-normal leading-none text-gray-500 dark:text-gray-400">
-                      Qty: 1
-                    </p>
-
-                    <button
-                      data-tooltip-target="tooltipRemoveItem2a"
-                      type="button"
-                      className="text-red-600 hover:text-red-700 dark:text-red-500 dark:hover:text-red-600"
-                    >
-                      <span className="sr-only"> Remove </span>
-                      <svg
-                        className="h-4 w-4"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M2 12a10 10 0 1 1 20 0 10 10 0 0 1-20 0Zm7.7-3.7a1 1 0 0 0-1.4 1.4l2.3 2.3-2.3 2.3a1 1 0 1 0 1.4 1.4l2.3-2.3 2.3 2.3a1 1 0 0 0 1.4-1.4L13.4 12l2.3-2.3a1 1 0 0 0-1.4-1.4L12 10.6 9.7 8.3Z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </button>
-                    <div
-                      id="tooltipRemoveItem2a"
-                      role="tooltip"
-                      className="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700"
-                    >
-                      Remove item
-                      <div className="tooltip-arrow" data-popper-arrow></div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2">
-                  <div>
-                    <a
-                      href="#"
-                      className="truncate text-sm font-semibold leading-none text-gray-900 dark:text-white hover:underline"
-                    >
-                      Apple Watch SE
-                    </a>
-                    <p className="mt-0.5 truncate text-sm font-normal text-gray-500 dark:text-gray-400">
-                      $598
-                    </p>
-                  </div>
-
-                  <div className="flex items-center justify-end gap-6">
-                    <p className="text-sm font-normal leading-none text-gray-500 dark:text-gray-400">
-                      Qty: 2
-                    </p>
-
-                    <button
-                      data-tooltip-target="tooltipRemoveItem3b"
-                      type="button"
-                      className="text-red-600 hover:text-red-700 dark:text-red-500 dark:hover:text-red-600"
-                    >
-                      <span className="sr-only"> Remove </span>
-                      <svg
-                        className="h-4 w-4"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M2 12a10 10 0 1 1 20 0 10 10 0 0 1-20 0Zm7.7-3.7a1 1 0 0 0-1.4 1.4l2.3 2.3-2.3 2.3a1 1 0 1 0 1.4 1.4l2.3-2.3 2.3 2.3a1 1 0 0 0 1.4-1.4L13.4 12l2.3-2.3a1 1 0 0 0-1.4-1.4L12 10.6 9.7 8.3Z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </button>
-                    <div
-                      id="tooltipRemoveItem3b"
-                      role="tooltip"
-                      className="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700"
-                    >
-                      Remove item
-                      <div className="tooltip-arrow" data-popper-arrow></div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2">
-                  <div>
-                    <a
-                      href="#"
-                      className="truncate text-sm font-semibold leading-none text-gray-900 dark:text-white hover:underline"
-                    >
-                      Sony Playstation 5
-                    </a>
-                    <p className="mt-0.5 truncate text-sm font-normal text-gray-500 dark:text-gray-400">
-                      $799
-                    </p>
-                  </div>
-
-                  <div className="flex items-center justify-end gap-6">
-                    <p className="text-sm font-normal leading-none text-gray-500 dark:text-gray-400">
-                      Qty: 1
-                    </p>
-
-                    <button
-                      data-tooltip-target="tooltipRemoveItem4b"
-                      type="button"
-                      className="text-red-600 hover:text-red-700 dark:text-red-500 dark:hover:text-red-600"
-                    >
-                      <span className="sr-only"> Remove </span>
-                      <svg
-                        className="h-4 w-4"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M2 12a10 10 0 1 1 20 0 10 10 0 0 1-20 0Zm7.7-3.7a1 1 0 0 0-1.4 1.4l2.3 2.3-2.3 2.3a1 1 0 1 0 1.4 1.4l2.3-2.3 2.3 2.3a1 1 0 0 0 1.4-1.4L13.4 12l2.3-2.3a1 1 0 0 0-1.4-1.4L12 10.6 9.7 8.3Z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </button>
-                    <div
-                      id="tooltipRemoveItem4b"
-                      role="tooltip"
-                      className="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700"
-                    >
-                      Remove item
-                      <div className="tooltip-arrow" data-popper-arrow></div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2">
-                  <div>
-                    <a
-                      href="#"
-                      className="truncate text-sm font-semibold leading-none text-gray-900 dark:text-white hover:underline"
-                    >
-                      Apple iMac 20"
-                    </a>
-                    <p className="mt-0.5 truncate text-sm font-normal text-gray-500 dark:text-gray-400">
-                      $8,997
-                    </p>
-                  </div>
-
-                  <div className="flex items-center justify-end gap-6">
-                    <p className="text-sm font-normal leading-none text-gray-500 dark:text-gray-400">
-                      Qty: 3
-                    </p>
-
-                    <button
-                      data-tooltip-target="tooltipRemoveItem5b"
-                      type="button"
-                      className="text-red-600 hover:text-red-700 dark:text-red-500 dark:hover:text-red-600"
-                    >
-                      <span className="sr-only"> Remove </span>
-                      <svg
-                        className="h-4 w-4"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M2 12a10 10 0 1 1 20 0 10 10 0 0 1-20 0Zm7.7-3.7a1 1 0 0 0-1.4 1.4l2.3 2.3-2.3 2.3a1 1 0 1 0 1.4 1.4l2.3-2.3 2.3 2.3a1 1 0 0 0 1.4-1.4L13.4 12l2.3-2.3a1 1 0 0 0-1.4-1.4L12 10.6 9.7 8.3Z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </button>
-                    <div
-                      id="tooltipRemoveItem5b"
-                      role="tooltip"
-                      className="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700"
-                    >
-                      Remove item
-                      <div className="tooltip-arrow" data-popper-arrow></div>
-                    </div>
-                  </div>
-                </div>
-
                 <a
                   href="#"
                   title=""
-                  className="mb-2 me-2 inline-flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                  className="mb-2 me-2 inline-flex w-full items-center justify-center rounded-lg bg-teal-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-teal-800 focus:outline-none focus:ring-4 focus:ring-teal-300 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800"
                   role="button"
                 >
                   {" "}
@@ -360,7 +171,7 @@ const HeaderComponent = () => {
                     d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
                   />
                 </svg>
-                Account
+                {user ? user.name : "Account"}
                 <svg
                   className="w-4 h-4 text-gray-900 dark:text-white ms-1"
                   aria-hidden="true"
@@ -380,84 +191,118 @@ const HeaderComponent = () => {
                 </svg>
               </button>
 
-              <div
-                id="userDropdown1"
-                className="hidden z-10 w-56 divide-y divide-gray-100 overflow-hidden overflow-y-auto rounded-lg bg-white antialiased shadow dark:divide-gray-600 dark:bg-gray-700"
-              >
-                <ul className="p-2 text-start text-sm font-medium text-gray-900 dark:text-white">
-                  <li>
-                    <a
-                      href="#"
-                      title=""
-                      className="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
-                    >
-                      {" "}
-                      My Account{" "}
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      title=""
-                      className="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
-                    >
-                      {" "}
-                      My Orders{" "}
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      title=""
-                      className="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
-                    >
-                      {" "}
-                      Settings{" "}
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      title=""
-                      className="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
-                    >
-                      {" "}
-                      Favourites{" "}
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      title=""
-                      className="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
-                    >
-                      {" "}
-                      Delivery Addresses{" "}
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      title=""
-                      className="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
-                    >
-                      {" "}
-                      Billing Data{" "}
-                    </a>
-                  </li>
-                </ul>
-
-                <div className="p-2 text-sm font-medium text-gray-900 dark:text-white">
-                  <a
-                    href="#"
-                    title=""
-                    className="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
+              {user ? (
+                <>
+                  <div
+                    id="userDropdown1"
+                    className="hidden z-10 w-56 divide-y divide-gray-100 overflow-hidden overflow-y-auto rounded-lg bg-white antialiased shadow dark:divide-gray-600 dark:bg-gray-700"
                   >
-                    {" "}
-                    Sign Out{" "}
-                  </a>
-                </div>
-              </div>
+                    <ul className="p-2 text-start text-sm font-medium text-gray-900 dark:text-white">
+                      <li>
+                        <a
+                          href="#"
+                          title=""
+                          className="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
+                        >
+                          {" "}
+                          My Account{" "}
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          title=""
+                          className="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
+                        >
+                          {" "}
+                          My Orders{" "}
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          title=""
+                          className="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
+                        >
+                          {" "}
+                          Settings{" "}
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          title=""
+                          className="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
+                        >
+                          {" "}
+                          Favourites{" "}
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          title=""
+                          className="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
+                        >
+                          {" "}
+                          Delivery Addresses{" "}
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          title=""
+                          className="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
+                        >
+                          {" "}
+                          Billing Data{" "}
+                        </a>
+                      </li>
+                    </ul>
+
+                    <div className="p-2 text-sm font-medium text-gray-900 dark:text-white">
+                      <a
+                        href="#"
+                        title=""
+                        className="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
+                      >
+                        {" "}
+                        Sign Out{" "}
+                      </a>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div
+                    id="userDropdown1"
+                    className="hidden z-10 w-56 divide-y divide-gray-100 overflow-hidden overflow-y-auto rounded-lg bg-white antialiased shadow dark:divide-gray-600 dark:bg-gray-700"
+                  >
+                    <ul className="p-2 text-start text-sm font-medium text-gray-900 dark:text-white">
+                      <li>
+                        <a
+                          href="#"
+                          title=""
+                          className="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
+                        >
+                          {" "}
+                          Login{" "}
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          title=""
+                          className="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
+                        >
+                          {" "}
+                          Register{" "}
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </>
+              )}
 
               <button
                 type="button"
@@ -495,7 +340,7 @@ const HeaderComponent = () => {
               <li>
                 <a
                   href="#"
-                  className="hover:text-primary-700 dark:hover:text-primary-500"
+                  className="hover:text-teal-700 dark:hover:text-teal-500"
                 >
                   Home
                 </a>
@@ -503,7 +348,7 @@ const HeaderComponent = () => {
               <li>
                 <a
                   href="#"
-                  className="hover:text-primary-700 dark:hover:text-primary-500"
+                  className="hover:text-teal-700 dark:hover:text-teal-500"
                 >
                   Best Sellers
                 </a>
@@ -511,7 +356,7 @@ const HeaderComponent = () => {
               <li>
                 <a
                   href="#"
-                  className="hover:text-primary-700 dark:hover:text-primary-500"
+                  className="hover:text-teal-700 dark:hover:text-teal-500"
                 >
                   Gift Ideas
                 </a>
@@ -519,7 +364,7 @@ const HeaderComponent = () => {
               <li>
                 <a
                   href="#"
-                  className="hover:text-primary-700 dark:hover:text-primary-500"
+                  className="hover:text-teal-700 dark:hover:text-teal-500"
                 >
                   Games
                 </a>
@@ -527,7 +372,7 @@ const HeaderComponent = () => {
               <li>
                 <a
                   href="#"
-                  className="hover:text-primary-700 dark:hover:text-primary-500"
+                  className="hover:text-teal-700 dark:hover:text-teal-500"
                 >
                   Electronics
                 </a>
@@ -535,7 +380,7 @@ const HeaderComponent = () => {
               <li>
                 <a
                   href="#"
-                  className="hover:text-primary-700 dark:hover:text-primary-500"
+                  className="hover:text-teal-700 dark:hover:text-teal-500"
                 >
                   Home & Garden
                 </a>

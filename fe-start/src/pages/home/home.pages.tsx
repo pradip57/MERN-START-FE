@@ -3,14 +3,14 @@ import "./home.pages.css";
 import HomeTitleComponent from "../../components/common/home-title/home-title.components";
 import HomeTitleDesignComponent from "../../components/common/home-title-design/home-title-design.components";
 import HeaderComponent from "../../components/header/header.components";
-import BannerSliderComponent from "../../components/banner-slider/banner-slider.components";
+import BannerSliderMainComponent from "../../components/banner-slider-main/banner-slider-main.components";
 
 const HomePage: React.FC = () => {
   return (
     <>
       <HeaderComponent />
 
-      <BannerSliderComponent />
+      <BannerSliderMainComponent />
 
       <div>
         <HomeTitleDesignComponent>
