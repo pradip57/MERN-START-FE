@@ -7,7 +7,7 @@ export interface UserProps {
 }
 
 const HeaderComponent = () => {
-  const [user] = useState<UserProps>({ name: "Pradip" });
+  const [user] = useState<UserProps>();
 
   return (
     <>
@@ -281,24 +281,24 @@ const HeaderComponent = () => {
                   >
                     <ul className="p-2 text-start text-sm font-medium text-gray-900 dark:text-white">
                       <li>
-                        <a
-                          href="#"
+                        <NavLink
+                          to="/login"
                           title=""
                           className="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
                         >
                           {" "}
                           Login{" "}
-                        </a>
+                        </NavLink>
                       </li>
                       <li>
-                        <a
-                          href="#"
+                        <NavLink
+                          to="/register"
                           title=""
                           className="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
                         >
                           {" "}
                           Register{" "}
-                        </a>
+                        </NavLink>
                       </li>
                     </ul>
                   </div>
