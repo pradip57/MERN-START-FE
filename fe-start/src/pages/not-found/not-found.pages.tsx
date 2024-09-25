@@ -1,9 +1,11 @@
 import { NavLink } from "react-router-dom";
+import HeaderComponent from "../../components/header/header.components";
 
 const NotFoundPage = () => {
   return (
     <>
-      <section className="bg-white dark:bg-gray-900">
+      <HeaderComponent />
+      <section className="bg-white dark:bg-gray-900 mt-32">
         <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
           <div className="mx-auto max-w-screen-sm text-center">
             <h1 className="mb-4 text-7xl tracking-tight font-extrabold lg:text-9xl text-teal-600 dark:text-teal-500">

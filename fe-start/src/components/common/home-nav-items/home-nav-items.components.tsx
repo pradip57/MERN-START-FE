@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 export type HomeNavItemsComponentsProps = {
   itemsName: string;
   link: string;
@@ -10,13 +12,13 @@ const HomeNavItemsComponents = ({
   return (
     <>
       <li>
-        <a
-          href={link}
+        <NavLink
+          to={link}
           title=""
           className="flex text-[18px] font-medium text-gray-600 hover:text-teal-700 dark:text-white dark:hover:text-teal-500"
         >
           {itemsName}
-        </a>
+        </NavLink>
       </li>
     </>
   );
