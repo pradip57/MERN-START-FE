@@ -4,11 +4,9 @@ import NotFoundPage from "../pages/not-found/not-found.pages";
 import CategoryPage from "../pages/categories/categories.pages";
 import BrandPage from "../pages/brands/brands.pages";
 import ProductPage from "../pages/products/products.pages";
-import LoginPage from "../pages/auth/login/login.pages";
-import RegisterPage from "../pages/auth/register/register.pages";
-import HomePageLayout from "../pages/layouts/home.layouts.pages";
-import AdminLayout from "../pages/layouts/admin.layouts.pages";
 import AdminDashboardPage from "../pages/admin-dashboard/admin-dashboard.pages";
+import { LoginPage, RegisterPage } from "../pages/auth";
+import { AdminLayout, HomePageLayout } from "../pages/layouts";
 
 const RoutingConfig = () => {
   return (
@@ -27,7 +25,7 @@ const RoutingConfig = () => {
 
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<AdminDashboardPage />} />
-            
+
             <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>
