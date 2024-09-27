@@ -1,4 +1,11 @@
+import { useState } from "react";
+
 const LoginPage = () => {
+  const [credentials, setCredentials] = useState({
+    username: "",
+    password: "",
+  });
+
   return (
     <>
       <section className="bg-gray-100 dark:bg-gray-900">
@@ -28,6 +35,10 @@ const LoginPage = () => {
                     Your email
                   </label>
                   <input
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      console.log(value);
+                    }}
                     type="email"
                     name="email"
                     id="email"
