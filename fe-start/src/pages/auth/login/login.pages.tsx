@@ -5,6 +5,30 @@ const LoginPage = () => {
     username: "",
     password: "",
   });
+  console.log(credentials);
+
+  const [errorsMsg, setErrorMsg] = useState({
+    username: "",
+    password: "",
+  });
+  console.log(errorsMsg);
+
+  const handleSubmit = (e: any) => {
+    const { value, name } = e.target;
+
+    if (name === "username" && (value == null || !value)) {
+      setErrorMsg({ ...errorsMsg, username: "Username must be required" });
+    } else if (name === "username" && value) {
+      setErrorMsg({ ...errorsMsg, username: "" });
+    }
+
+    if (name === "password" && (value == null || !value)) {
+      setErrorMsg({ ...errorsMsg, password: "Password must be required" });
+    } else if (name === "password" && value) {
+      setErrorMsg({ ...errorsMsg, password: "" });
+    }
+    setCredentials({ ...credentials, [name]: value });
+  };
 
   return (
     <>
@@ -35,18 +59,16 @@ const LoginPage = () => {
                     Your email
                   </label>
                   <input
-                    onChange={(e) => {
-                      const value = e.target.value;
-                      console.log(value);
-                    }}
+                    onChange={handleSubmit}
                     type="email"
-                    name="email"
+                    name="username"
                     id="email"
                     className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-teal-600 focus:border-teal-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="name@company.com"
-                    required
                   />
+                  <span className="text-red-600">{errorsMsg.username}</span>
                 </div>
+
                 <div>
                   <label
                     htmlFor="password"
@@ -55,13 +77,14 @@ const LoginPage = () => {
                     Password
                   </label>
                   <input
+                    onChange={handleSubmit}
                     type="password"
                     name="password"
                     id="password"
                     placeholder="••••••••"
                     className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-teal-600 focus:border-teal-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required
                   />
+                  <span className="text-red-600">{errorsMsg.password}</span>
                 </div>
                 <div className="flex items-center justify-center">
                   <a
