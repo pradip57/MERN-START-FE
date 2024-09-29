@@ -1,35 +1,22 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const LoginPage = () => {
-  const [credentials, setCredentials] = useState({
-    username: "",
-    password: "",
+  const loginDTO = yup.object({
+    username: yup.string().email().required(),
+    password: yup.string().min(8).required(),
   });
-  console.log(credentials);
 
-  const [errorsMsg, setErrorMsg] = useState({
-    username: "",
-    password: "",
-  });
-  console.log(errorsMsg);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(loginDTO) });
 
-  const handleSubmit = (e: any) => {
-    const { value, name } = e.target;
-
-    if (name === "username" && (value == null || !value)) {
-      setErrorMsg({ ...errorsMsg, username: "Username must be required" });
-    } else if (name === "username" && value) {
-      setErrorMsg({ ...errorsMsg, username: "" });
-    }
-
-    if (name === "password" && (value == null || !value)) {
-      setErrorMsg({ ...errorsMsg, password: "Password must be required" });
-    } else if (name === "password" && value) {
-      setErrorMsg({ ...errorsMsg, password: "" });
-    }
-    setCredentials({ ...credentials, [name]: value });
+  const submitEvent = (credentials: any) => {
+    console.log(credentials);
   };
-
   return (
     <>
       <section className="bg-gray-100 dark:bg-gray-900">
@@ -50,7 +37,10 @@ const LoginPage = () => {
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 Sign in to your account
               </h1>
-              <form className="space-y-4 md:space-y-6" action="#">
+              <form
+                className="space-y-4 md:space-y-6"
+                onSubmit={handleSubmit(submitEvent)}
+              >
                 <div>
                   <label
                     htmlFor="email"
@@ -59,14 +49,16 @@ const LoginPage = () => {
                     Your email
                   </label>
                   <input
-                    onChange={handleSubmit}
+                    {...register("username")}
                     type="email"
                     name="username"
                     id="email"
                     className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-teal-600 focus:border-teal-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="name@company.com"
                   />
-                  <span className="text-red-600">{errorsMsg.username}</span>
+                  <span className="text-red-600">
+                    {errors?.username?.message}
+                  </span>
                 </div>
 
                 <div>
@@ -77,14 +69,16 @@ const LoginPage = () => {
                     Password
                   </label>
                   <input
-                    onChange={handleSubmit}
+                    {...register("password")}
                     type="password"
                     name="password"
                     id="password"
                     placeholder="••••••••"
                     className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-teal-600 focus:border-teal-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   />
-                  <span className="text-red-600">{errorsMsg.password}</span>
+                  <span className="text-red-600">
+                    {errors?.password?.message}
+                  </span>
                 </div>
                 <div className="flex items-center justify-center">
                   <a
