@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { NavLink } from "react-router-dom";
 
 const LoginPage = () => {
   const loginDTO = yup.object({
@@ -96,12 +97,12 @@ const LoginPage = () => {
                 </button>
                 <p className="text-sm text-center font-light text-gray-500 dark:text-gray-400">
                   Don’t have an account yet?{" "}
-                  <a
-                    href="#"
+                  <NavLink
+                    to="/register"
                     className="font-medium text-teal-600 hover:underline dark:text-teal-500"
                   >
                     Sign up
-                  </a>
+                  </NavLink>
                 </p>
               </form>
             </div>
