@@ -50,7 +50,7 @@ const RegisterPage = () => {
               </div>
 
               <form action="#" className="mt-8 grid grid-cols-6 gap-6">
-                <div className="col-span-6">
+                <div className="col-span-6 sm:col-span-6 ">
                   <label
                     htmlFor="name"
                     className="block text-sm font-medium text-gray-700"
@@ -66,7 +66,7 @@ const RegisterPage = () => {
                   />
                 </div>
 
-                <div className="col-span-6">
+                <div className="col-span-6 sm:col-span-6 ">
                   <label
                     htmlFor="email"
                     className="block text-sm font-medium text-gray-700"
@@ -83,7 +83,7 @@ const RegisterPage = () => {
                   />
                 </div>
 
-                <div className="col-span-3 ">
+                <div className="col-span-6 sm:col-span-3">
                   <label
                     htmlFor="password"
                     className="block text-sm font-medium text-gray-700"
@@ -100,7 +100,7 @@ const RegisterPage = () => {
                   />
                 </div>
 
-                <div className="col-span-3">
+                <div className="col-span-6 sm:col-span-3">
                   <label
                     htmlFor="passwordConfirmation"
                     className="block text-sm font-medium text-gray-700"
@@ -115,7 +115,7 @@ const RegisterPage = () => {
                     className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
-                <div className="col-span-3">
+                <div className="col-span-6 sm:col-span-3">
                   <label
                     htmlFor="role"
                     className="block text-sm font-medium text-gray-700"
@@ -123,14 +123,16 @@ const RegisterPage = () => {
                     Role
                   </label>
 
-                  <input
-                    type="text"
+                  <select
                     id="role"
                     name="role"
                     className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-                  />
+                  >
+                    <option value="seller">Seller</option>
+                    <option value="customer">Buyer</option>
+                  </select>
                 </div>
-                <div className="col-span-3">
+                <div className="col-span-6 sm:col-span-3">
                   <label
                     htmlFor="phoneNumber"
                     className="block text-sm font-medium text-gray-700"
@@ -139,13 +141,13 @@ const RegisterPage = () => {
                   </label>
 
                   <input
-                    type="text"
+                    type="tel"
                     id="phoneNumber"
                     name="phoneNumber"
                     className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
-                <div className="col-span-6">
+                <div className="col-span-6 sm:col-span-6">
                   <label
                     htmlFor="address"
                     className="block text-sm font-medium text-gray-700"
