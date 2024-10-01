@@ -1,5 +1,8 @@
 import { FaShop } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
+import FormLabelComponent from "../../../components/common/form/label/form-label.components";
+import FormInputComponent from "../../../components/common/form/input/form-input.components";
+import FormSubmitBtnComponent from "../../../components/common/form/submit-button/form-submit-btn.components";
 
 const RegisterPage = () => {
   return (
@@ -51,124 +54,82 @@ const RegisterPage = () => {
 
               <form action="#" className="mt-8 grid grid-cols-6 gap-6">
                 <div className="col-span-6 sm:col-span-6 ">
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Name
-                  </label>
-
-                  <input
+                  <FormLabelComponent htmlFor="name" label="Name" />
+                  <FormInputComponent
                     type="text"
                     id="name"
-                    name="name"
-                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                    placeholder="Enter your full name"
                   />
                 </div>
 
                 <div className="col-span-6 sm:col-span-6 ">
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    {" "}
-                    Email{" "}
-                  </label>
+                  <FormLabelComponent htmlFor="email" label="Email" />
 
-                  <input
-                    type="email"
+                  <FormInputComponent
+                    type="text"
                     id="email"
-                    name="email"
-                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                    placeholder="Enter your email"
                   />
                 </div>
 
                 <div className="col-span-6 sm:col-span-3">
-                  <label
-                    htmlFor="password"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    {" "}
-                    Password{" "}
-                  </label>
+                  <FormLabelComponent htmlFor="password" label="Password" />
 
-                  <input
+                  <FormInputComponent
                     type="password"
                     id="password"
-                    name="password"
-                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                    placeholder="Enter your new password"
                   />
                 </div>
 
                 <div className="col-span-6 sm:col-span-3">
-                  <label
-                    htmlFor="passwordConfirmation"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Password Confirmation
-                  </label>
+                  <FormLabelComponent
+                    htmlFor="confirmPassword"
+                    label="Confirm Password"
+                  />
 
-                  <input
+                  <FormInputComponent
                     type="password"
-                    id="passwordConfirmation"
-                    name="passwordConfirmation"
-                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                    id="confirmPassword"
+                    placeholder="Re-Enter your password"
                   />
                 </div>
                 <div className="col-span-6 sm:col-span-3">
-                  <label
-                    htmlFor="role"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Role
-                  </label>
+                  <FormLabelComponent htmlFor="role" label="Role" />
 
                   <select
                     id="role"
                     name="role"
-                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                    className="mt-1 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-teal-600 focus:border-teal-600 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   >
                     <option value="seller">Seller</option>
                     <option value="customer">Buyer</option>
                   </select>
                 </div>
                 <div className="col-span-6 sm:col-span-3">
-                  <label
+                  <FormLabelComponent
                     htmlFor="phoneNumber"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Phone Number
-                  </label>
+                    label="Phone Number"
+                  />
 
-                  <input
+                  <FormInputComponent
                     type="tel"
                     id="phoneNumber"
-                    name="phoneNumber"
-                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                    placeholder="Enter your phone number"
                   />
                 </div>
                 <div className="col-span-6 sm:col-span-6">
-                  <label
-                    htmlFor="address"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Address
-                  </label>
+                  <FormLabelComponent htmlFor="address" label="Address" />
 
                   <input
                     type="text"
                     id="address"
                     name="address"
-                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                    className="mt-1 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-teal-600 focus:border-teal-600 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   />
                 </div>
                 <div className="col-span-6">
-                  <label
-                    htmlFor="image"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Image
-                  </label>
+                  <FormLabelComponent htmlFor="image" label="Image" />
 
                   <input
                     type="file"
@@ -181,28 +142,35 @@ const RegisterPage = () => {
                 <div className="col-span-6">
                   <p className="text-sm text-gray-500">
                     By creating an account, you agree to our
-                    <a href="#" className="text-gray-700 underline">
+                    <NavLink
+                      to="/terms-and-conditions"
+                      className="text-gray-700 hover:text-teal-800 underline"
+                    >
                       {" "}
                       terms and conditions{" "}
-                    </a>
-                    and
-                    <a href="#" className="text-gray-700 underline">
+                    </NavLink>
+                    and {""}
+                    <NavLink
+                      to="privacy-policy"
+                      className="text-gray-700 hover:text-teal-800 underline"
+                    >
                       privacy policy
-                    </a>
+                    </NavLink>
                     .
                   </p>
                 </div>
 
-                <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
-                  <button className="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500">
-                    Create an account
-                  </button>
+                <div className="col-span-6  sm:items-center sm:gap-2">
+                  <FormSubmitBtnComponent submitTitle="Create account" />
 
-                  <p className="mt-4 text-sm text-gray-500 sm:mt-0">
+                  <p className="mt-4 text-sm text-center text-gray-500 sm:mt-2">
                     Already have an account?
-                    <a href="#" className="text-gray-700 underline">
-                      Log in
-                    </a>
+                    <NavLink
+                      to="/login"
+                      className=" text-gray-700 underline hover:text-teal-800"
+                    >
+                      &nbsp;Log in
+                    </NavLink>
                     .
                   </p>
                 </div>
