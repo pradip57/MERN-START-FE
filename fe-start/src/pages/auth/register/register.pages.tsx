@@ -3,8 +3,15 @@ import { NavLink } from "react-router-dom";
 import FormLabelComponent from "../../../components/common/form/label/form-label.components";
 import FormInputComponent from "../../../components/common/form/input/form-input.components";
 import FormSubmitBtnComponent from "../../../components/common/form/submit-button/form-submit-btn.components";
+import { useForm } from "react-hook-form";
 
 const RegisterPage = () => {
+
+  const {control,handleSubmit,formState:{errors}} = useForm()
+
+  const submitEvent = (data:any) =>{
+    console.log(data)
+  }
   return (
     <>
       <section className="bg-gray-100">
@@ -52,13 +59,15 @@ const RegisterPage = () => {
                 </p>
               </div>
 
-              <form action="#" className="mt-8 grid grid-cols-6 gap-6">
+              <form onSubmit={handleSubmit(submitEvent)} className="mt-8 grid grid-cols-6 gap-6">
                 <div className="col-span-6 sm:col-span-6 ">
                   <FormLabelComponent htmlFor="name" label="Name" />
                   <FormInputComponent
                     type="text"
-                    id="name"
+                    name="name"
                     placeholder="Enter your full name"
+                    control={control}
+                    errMsg={errors?.name?.message as string} 
                   />
                 </div>
 
@@ -67,8 +76,10 @@ const RegisterPage = () => {
 
                   <FormInputComponent
                     type="text"
-                    id="email"
+                    name="email"
                     placeholder="Enter your email"
+                    control={control}
+                    errMsg={errors?.name?.message as string} 
                   />
                 </div>
 
@@ -77,8 +88,10 @@ const RegisterPage = () => {
 
                   <FormInputComponent
                     type="password"
-                    id="password"
+                    name="password"
                     placeholder="Enter your new password"
+                    control={control}
+                    errMsg={errors?.name?.message as string} 
                   />
                 </div>
 
@@ -90,8 +103,10 @@ const RegisterPage = () => {
 
                   <FormInputComponent
                     type="password"
-                    id="confirmPassword"
+                    name="confirmPassword"
                     placeholder="Re-Enter your password"
+                    control={control}
+                    errMsg={errors?.name?.message as string} 
                   />
                 </div>
                 <div className="col-span-6 sm:col-span-3">
@@ -114,17 +129,20 @@ const RegisterPage = () => {
 
                   <FormInputComponent
                     type="tel"
-                    id="phoneNumber"
+                    name="phoneNumber"
                     placeholder="Enter your phone number"
+                    control={control}
+                    errMsg={errors?.name?.message as string} 
                   />
                 </div>
                 <div className="col-span-6 sm:col-span-6">
                   <FormLabelComponent htmlFor="address" label="Address" />
 
-                  <input
-                    type="text"
+                  <textarea
                     id="address"
                     name="address"
+                    style={{ resize: "none" }}
+                    rows={1}
                     className="mt-1 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-teal-600 focus:border-teal-600 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   />
                 </div>
@@ -135,7 +153,7 @@ const RegisterPage = () => {
                     type="file"
                     id="image"
                     name="image"
-                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                    className="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                   />
                 </div>
 
