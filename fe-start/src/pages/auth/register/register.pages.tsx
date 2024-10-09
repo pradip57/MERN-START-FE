@@ -1,17 +1,23 @@
 import { FaShop } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 import FormLabelComponent from "../../../components/common/form/label/form-label.components";
-import FormInputComponent from "../../../components/common/form/input/form-input.components";
+import FormInputComponent, {
+  InputTypeEnum,
+} from "../../../components/common/form/input/form-input.components";
 import FormSubmitBtnComponent from "../../../components/common/form/submit-button/form-submit-btn.components";
 import { useForm } from "react-hook-form";
+import FormSelectOptionComponent from "../../../components/common/form/select-option/form-select-option.components";
 
 const RegisterPage = () => {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const {control,handleSubmit,formState:{errors}} = useForm()
-
-  const submitEvent = (data:any) =>{
-    console.log(data)
-  }
+  const submitEvent = (data: any) => {
+    console.log(data);
+  };
   return (
     <>
       <section className="bg-gray-100">
@@ -59,15 +65,18 @@ const RegisterPage = () => {
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit(submitEvent)} className="mt-8 grid grid-cols-6 gap-6">
+              <form
+                onSubmit={handleSubmit(submitEvent)}
+                className="mt-8 grid grid-cols-6 gap-6"
+              >
                 <div className="col-span-6 sm:col-span-6 ">
                   <FormLabelComponent htmlFor="name" label="Name" />
                   <FormInputComponent
-                    type="text"
+                    type={InputTypeEnum.TEXT}
                     name="name"
                     placeholder="Enter your full name"
                     control={control}
-                    errMsg={errors?.name?.message as string} 
+                    errMsg={errors?.name?.message as string}
                   />
                 </div>
 
@@ -75,11 +84,11 @@ const RegisterPage = () => {
                   <FormLabelComponent htmlFor="email" label="Email" />
 
                   <FormInputComponent
-                    type="text"
+                    type={InputTypeEnum.TEXT}
                     name="email"
                     placeholder="Enter your email"
                     control={control}
-                    errMsg={errors?.name?.message as string} 
+                    errMsg={errors?.name?.message as string}
                   />
                 </div>
 
@@ -87,11 +96,11 @@ const RegisterPage = () => {
                   <FormLabelComponent htmlFor="password" label="Password" />
 
                   <FormInputComponent
-                    type="password"
+                    type={InputTypeEnum.PASSWORD}
                     name="password"
                     placeholder="Enter your new password"
                     control={control}
-                    errMsg={errors?.name?.message as string} 
+                    errMsg={errors?.name?.message as string}
                   />
                 </div>
 
@@ -102,24 +111,22 @@ const RegisterPage = () => {
                   />
 
                   <FormInputComponent
-                    type="password"
+                    type={InputTypeEnum.PASSWORD}
                     name="confirmPassword"
                     placeholder="Re-Enter your password"
                     control={control}
-                    errMsg={errors?.name?.message as string} 
+                    errMsg={errors?.name?.message as string}
                   />
                 </div>
                 <div className="col-span-6 sm:col-span-3">
                   <FormLabelComponent htmlFor="role" label="Role" />
 
-                  <select
-                    id="role"
+                  <FormSelectOptionComponent
                     name="role"
-                    className="mt-1 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-teal-600 focus:border-teal-600 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  >
-                    <option value="seller">Seller</option>
-                    <option value="customer">Buyer</option>
-                  </select>
+                    options=""
+                    control={control}
+                    errMsg={errors?.name?.message as string}
+                  />
                 </div>
                 <div className="col-span-6 sm:col-span-3">
                   <FormLabelComponent
@@ -128,11 +135,11 @@ const RegisterPage = () => {
                   />
 
                   <FormInputComponent
-                    type="tel"
+                    type={InputTypeEnum.TEL}
                     name="phoneNumber"
                     placeholder="Enter your phone number"
                     control={control}
-                    errMsg={errors?.name?.message as string} 
+                    errMsg={errors?.name?.message as string}
                   />
                 </div>
                 <div className="col-span-6 sm:col-span-6">

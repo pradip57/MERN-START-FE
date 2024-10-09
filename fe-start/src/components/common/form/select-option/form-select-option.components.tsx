@@ -1,42 +1,34 @@
 import { useController } from "react-hook-form";
 
-export enum InputTypeEnum {
-  TEXT = "text",
-  PASSWORD = "password",
-  TEL = "tel",
-}
-
-export type FormInputComponentProps = {
-  type: InputTypeEnum;
+export type FormSelectOptionProps = {
   name: string;
-  placeholder: string;
+  options: any;
+
   control: any;
-  errMsg?: string | null | undefined;
+  errMsg: string;
 };
 
-const FormInputComponent = ({
-  type,
+const FormSelectOptionComponent = ({
   name,
-  placeholder,
+
+  options,
   control,
   errMsg,
-}: FormInputComponentProps) => {
+}: FormSelectOptionProps) => {
   const { field } = useController({
     name: name,
     control: control,
-    defaultValue: "",
   });
   return (
     <>
-      <input
+      <select
         {...field}
-        type={type}
         className="mt-1 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-teal-600 focus:border-teal-600 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        placeholder={placeholder}
-      />
-      <span className="text-danger">{errMsg}</span>
+      >
+        <option value="">{}</option>
+      </select>
     </>
   );
 };
 
-export default FormInputComponent;
+export default FormSelectOptionComponent;
