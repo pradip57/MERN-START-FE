@@ -1,19 +1,24 @@
 import { useController } from "react-hook-form";
+import Select from "react-select";
 
+export type OptionType = {
+  label: string;
+  value: string;
+};
 export type FormSelectOptionProps = {
   name: string;
-  options: any;
-
+  options: OptionType[];
   control: any;
-  errMsg: string;
+  errMsg: string | null | undefined;
+  multiple?: boolean;
 };
 
 const FormSelectOptionComponent = ({
   name,
-
   options,
   control,
   errMsg,
+  multiple = false,
 }: FormSelectOptionProps) => {
   const { field } = useController({
     name: name,
@@ -21,12 +26,43 @@ const FormSelectOptionComponent = ({
   });
   return (
     <>
-      <select
+      <Select
+        options={options}
         {...field}
-        className="mt-1 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-teal-600 focus:border-teal-600 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-      >
-        <option value="">{}</option>
-      </select>
+        isMulti={multiple}
+        isClearable={true}
+        isSearchable={false}
+        styles={{
+          control: (base, state) => ({
+            ...base,
+            borderRadius: "0.5rem",
+            minHeight: "42px",
+            boxShadow: state.isFocused ? "0 0 0 1.5px #008080" : "none",
+            borderColor: state.isFocused ? "#d1d5db" : base.borderColor,
+            "&:hover": {
+              borderColor: "#d1d5db",
+            },
+          }),
+          menu: (base) => ({
+            ...base,
+            backgroundColor: "#ffffff", // Custom background color for the dropdown menu (dark background)
+            borderRadius: "0.5rem", // Optional: rounded corners for the dropdown
+          }),
+          menuList: (base) => ({
+            ...base,
+            backgroundColor: "#ffffff", // Ensures the background of the menu items is consistent
+          }),
+          option: (base, state) => ({
+            ...base,
+            backgroundColor: state.isSelected
+              ? "#14b8a6"
+              : state.isFocused
+              ? "#E2E8F0"
+              : "#E2E8F0", // Highlight selected or focused options
+          }),
+        }}
+        className="mt-1 block w-full"
+      />
     </>
   );
 };

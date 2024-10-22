@@ -9,6 +9,7 @@ export enum InputTypeEnum {
 export type FormInputComponentProps = {
   type: InputTypeEnum;
   name: string;
+  defaultValue?: any;
   placeholder: string;
   control: any;
   errMsg?: string | null | undefined;
@@ -20,11 +21,12 @@ const FormInputComponent = ({
   placeholder,
   control,
   errMsg,
+  defaultValue = "",
 }: FormInputComponentProps) => {
   const { field } = useController({
     name: name,
     control: control,
-    defaultValue: "",
+    defaultValue: defaultValue,
   });
   return (
     <>

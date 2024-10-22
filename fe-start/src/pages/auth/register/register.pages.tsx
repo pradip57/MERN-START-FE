@@ -123,9 +123,19 @@ const RegisterPage = () => {
 
                   <FormSelectOptionComponent
                     name="role"
-                    options=""
+                    options={[
+                      {
+                        label: "Buyer",
+                        value: "customer",
+                      },
+                      {
+                        label: "Seller",
+                        value: "seller",
+                      },
+                    ]}
                     control={control}
                     errMsg={errors?.name?.message as string}
+                    // multiple={true}
                   />
                 </div>
                 <div className="col-span-6 sm:col-span-3">
