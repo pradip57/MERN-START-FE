@@ -7,11 +7,13 @@ import FormInputComponent, {
 import FormSubmitBtnComponent from "../../../components/common/form/submit-button/form-submit-btn.components";
 import { useForm } from "react-hook-form";
 import FormSelectOptionComponent from "../../../components/common/form/select-option/form-select-option.components";
+import FileInputComponent from "../../../components/common/form/file-input/file-input.components";
 
 const RegisterPage = () => {
   const {
     control,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm();
 
@@ -166,12 +168,7 @@ const RegisterPage = () => {
                 <div className="col-span-6">
                   <FormLabelComponent htmlFor="image" label="Image" />
 
-                  <input
-                    type="file"
-                    id="image"
-                    name="image"
-                    className="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                  />
+                  <FileInputComponent name="image" setValue={setValue}/>
                 </div>
 
                 <div className="col-span-6">

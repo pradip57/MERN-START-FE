@@ -4,6 +4,7 @@ export enum InputTypeEnum {
   TEXT = "text",
   PASSWORD = "password",
   TEL = "tel",
+  
 }
 
 export type FormInputComponentProps = {

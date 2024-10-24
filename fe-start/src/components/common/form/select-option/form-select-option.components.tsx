@@ -63,6 +63,7 @@ const FormSelectOptionComponent = ({
         }}
         className="mt-1 block w-full"
       />
+      <span className="text-red-800">{errMsg}</span>
     </>
   );
 };
