@@ -24,22 +24,50 @@ const FileInputComponent = ({
   };
   return (
     <>
-      <div className="flex">
-        <input
-          onChange={handleChange}
-          multiple={multiple}
-          type="file"
-          className={`mt-1 block ${
-            multiple ? "w-full" : "w-3/4"
-          } text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400`}
-        />
+      <div className="flex gap-2">
+        <div className={`${multiple ? "w-full" : "w-3/4"}`}>
+          <input
+            onChange={handleChange}
+            multiple={multiple}
+            type="file"
+            className={`mt-1 block w-full  text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400`}
+          />
+        </div>
+        {!multiple ? (
+          <div className="w-1/4 mt-[-25px]">
+            {thumb && typeof thumb === "object" ? (
+              <>
+                <img
+                  src={URL.createObjectURL(thumb)}
+                  className="rounded-full w-24 h-24"
+                />
+              </>
+            ) : (
+              <>
+                <img
+                  src="https://placehold.co/96x96?text=No Image"
+                  className="rounded-full"
+                />
+              </>
+            )}
+          </div>
+        ) : (
+          <>
+            
+          </>
+        )}
       </div>
       <div className="flex">
-        {thumb && Array.isArray(thumb) ? (
-          <>mulltiple images</>
-        ) : typeof thumb === "object" ? (
+        {multiple && thumb && Array.isArray(thumb) ? (
           <>
-            <img src={URL.createObjectURL(thumb)} />
+            {thumb.map((image: any, i: number) => (
+              <div className="w-1/4 ms-3 mt-3" key={i}>
+                <img
+                  src={URL.createObjectURL(image)}
+                  className="rounded-full w-24 h-24"
+                />
+              </div>
+            ))}
           </>
         ) : (
           <></>

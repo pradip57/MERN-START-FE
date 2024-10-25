@@ -8,14 +8,35 @@ import FormSubmitBtnComponent from "../../../components/common/form/submit-butto
 import { useForm } from "react-hook-form";
 import FormSelectOptionComponent from "../../../components/common/form/select-option/form-select-option.components";
 import FileInputComponent from "../../../components/common/form/file-input/file-input.components";
-
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import TextAreaComponent from "../../../components/common/form/text-area/text-area.components";
 const RegisterPage = () => {
+  const registerDTO = Yup.object({
+    name: Yup.string().min(2).required(),
+    email: Yup.string().email().required(),
+    password: Yup.string().required(),
+    confirmPassword: Yup.string()
+      .oneOf(
+        [Yup.ref("password")],
+        "Password and Confirm password are not same"
+      )
+      .required(),
+    role: Yup.object({
+      label: Yup.string().required("Role label is required"),
+      value: Yup.string().required("Role value is required"),
+    }).required("Role is required"),
+
+    phoneNumber: Yup.string().required(),
+    address: Yup.string().min(10).max(30).required(),
+    image: Yup.mixed().optional().nullable().required("Image is required"),
+  });
   const {
     control,
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm();
+  } = useForm({ resolver: yupResolver(registerDTO) });
 
   const submitEvent = (data: any) => {
     console.log(data);
@@ -72,7 +93,11 @@ const RegisterPage = () => {
                 className="mt-8 grid grid-cols-6 gap-6"
               >
                 <div className="col-span-6 sm:col-span-6 ">
-                  <FormLabelComponent htmlFor="name" label="Name" />
+                  <FormLabelComponent
+                    htmlFor="name"
+                    label="Name"
+                    compulsory={true}
+                  />
                   <FormInputComponent
                     type={InputTypeEnum.TEXT}
                     name="name"
@@ -83,26 +108,34 @@ const RegisterPage = () => {
                 </div>
 
                 <div className="col-span-6 sm:col-span-6 ">
-                  <FormLabelComponent htmlFor="email" label="Email" />
+                  <FormLabelComponent
+                    htmlFor="email"
+                    label="Email"
+                    compulsory={true}
+                  />
 
                   <FormInputComponent
                     type={InputTypeEnum.TEXT}
                     name="email"
                     placeholder="Enter your email"
                     control={control}
-                    errMsg={errors?.name?.message as string}
+                    errMsg={errors?.email?.message as string}
                   />
                 </div>
 
                 <div className="col-span-6 sm:col-span-3">
-                  <FormLabelComponent htmlFor="password" label="Password" />
+                  <FormLabelComponent
+                    htmlFor="password"
+                    label="Password"
+                    compulsory={true}
+                  />
 
                   <FormInputComponent
                     type={InputTypeEnum.PASSWORD}
                     name="password"
                     placeholder="Enter your new password"
                     control={control}
-                    errMsg={errors?.name?.message as string}
+                    errMsg={errors?.password?.message as string}
                   />
                 </div>
 
@@ -110,6 +143,7 @@ const RegisterPage = () => {
                   <FormLabelComponent
                     htmlFor="confirmPassword"
                     label="Confirm Password"
+                    compulsory={true}
                   />
 
                   <FormInputComponent
@@ -117,11 +151,15 @@ const RegisterPage = () => {
                     name="confirmPassword"
                     placeholder="Re-Enter your password"
                     control={control}
-                    errMsg={errors?.name?.message as string}
+                    errMsg={errors?.confirmPassword?.message as string}
                   />
                 </div>
                 <div className="col-span-6 sm:col-span-3">
-                  <FormLabelComponent htmlFor="role" label="Role" />
+                  <FormLabelComponent
+                    htmlFor="role"
+                    label="Role"
+                    compulsory={true}
+                  />
 
                   <FormSelectOptionComponent
                     name="role"
@@ -136,7 +174,7 @@ const RegisterPage = () => {
                       },
                     ]}
                     control={control}
-                    errMsg={errors?.name?.message as string}
+                    errMsg={errors?.role?.message as string}
                     // multiple={true}
                   />
                 </div>
@@ -144,6 +182,7 @@ const RegisterPage = () => {
                   <FormLabelComponent
                     htmlFor="phoneNumber"
                     label="Phone Number"
+                    compulsory={true}
                   />
 
                   <FormInputComponent
@@ -151,24 +190,36 @@ const RegisterPage = () => {
                     name="phoneNumber"
                     placeholder="Enter your phone number"
                     control={control}
-                    errMsg={errors?.name?.message as string}
+                    errMsg={errors?.phoneNumber?.message as string}
                   />
                 </div>
                 <div className="col-span-6 sm:col-span-6">
-                  <FormLabelComponent htmlFor="address" label="Address" />
+                  <FormLabelComponent
+                    htmlFor="address"
+                    label="Address"
+                    compulsory={true}
+                  />
 
-                  <textarea
-                    id="address"
+                  <TextAreaComponent
                     name="address"
-                    style={{ resize: "none" }}
+                    control={control}
                     rows={1}
-                    className="mt-1 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-teal-600 focus:border-teal-600 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    errMsg={errors?.address?.message}
+                    placeholder="Enter your address"
                   />
                 </div>
                 <div className="col-span-6">
-                  <FormLabelComponent htmlFor="image" label="Image" />
+                  <FormLabelComponent
+                    htmlFor="image"
+                    label="Image"
+                    compulsory={true}
+                  />
 
-                  <FileInputComponent name="image" setValue={setValue}/>
+                  <FileInputComponent
+                    name="image"
+                    setValue={setValue}
+                    multiple={false}
+                  />
                 </div>
 
                 <div className="col-span-6">
