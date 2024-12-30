@@ -7,11 +7,13 @@ import ProductPage from "../pages/products/products.pages";
 import AdminDashboardPage from "../pages/admin-dashboard/admin-dashboard.pages";
 import { LoginPage, RegisterPage } from "../pages/auth";
 import { AdminLayout, HomePageLayout } from "../pages/layouts";
+import { ToastContainer } from "react-toastify";
 
 const RoutingConfig = () => {
   return (
     <>
       <BrowserRouter>
+        <ToastContainer />
         <Routes>
           <Route path="/" element={<HomePageLayout />}>
             <Route index element={<HomePage />} />

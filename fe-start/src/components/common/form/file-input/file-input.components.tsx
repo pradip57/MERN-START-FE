@@ -52,9 +52,7 @@ const FileInputComponent = ({
             )}
           </div>
         ) : (
-          <>
-            
-          </>
+          <></>
         )}
       </div>
       <div className="flex">

@@ -5,6 +5,15 @@ import { NavLink } from "react-router-dom";
 import FormLabelComponent from "../../../components/common/form/label/form-label.components";
 import FormSubmitBtnComponent from "../../../components/common/form/submit-button/form-submit-btn.components";
 
+import axiosInstance from "../../../config/axios.config";
+import { toast } from "react-toastify";
+import authSvc from "../auth.service";
+
+export type CredentialsType = {
+  email: string;
+  password: string;
+};
+
 const LoginPage = () => {
   const loginDTO = yup.object({
     email: yup.string().email().required(),
@@ -17,8 +26,14 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(loginDTO) });
 
-  const submitEvent = (credentials: any) => {
-    console.log(credentials);
+  const submitEvent = async (credentials: CredentialsType) => {
+    try {
+      
+      const response = await authSvc.login(credentials);
+      console.log(response);
+    } catch (exception: any) {
+      toast.error(exception.data.message);
+    }
   };
   return (
     <>
