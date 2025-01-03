@@ -1,5 +1,5 @@
 import { FaShop } from "react-icons/fa6";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import FormLabelComponent from "../../../components/common/form/label/form-label.components";
 import FormInputComponent, {
   InputTypeEnum,
@@ -11,7 +11,25 @@ import FileInputComponent from "../../../components/common/form/file-input/file-
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import TextAreaComponent from "../../../components/common/form/text-area/text-area.components";
+import { toast } from "react-toastify";
+import authSvc from "../auth.service";
+import { useState } from "react";
+import { setErrorMsg } from "../../../config/helper.config";
+
+export type RegisterDataType = {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  role: any;
+  phoneNumber: string;
+  address: string;
+  image: any;
+};
+
 const RegisterPage = () => {
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const registerDTO = Yup.object({
     name: Yup.string().min(2).required(),
     email: Yup.string().email().required(),
@@ -35,11 +53,30 @@ const RegisterPage = () => {
     control,
     handleSubmit,
     setValue,
+    setError,
     formState: { errors },
   } = useForm({ resolver: yupResolver(registerDTO) });
 
-  const submitEvent = (data: any) => {
-    console.log(data);
+  const submitEvent = async (data: RegisterDataType) => {
+    try {
+      setLoading(true);
+      data = {
+        ...data,
+        role: data.role.value,
+      };
+      const response = await authSvc.register(data);
+      toast.success(
+        "Your account has been registered, Check your email for activation"
+      );
+      navigate("/");
+      // toast.success(response.data.message);
+    } catch (exception: any) {
+      console.log(exception);
+      setErrorMsg(exception, setError);
+      toast.error("Error Registering your account");
+    } finally {
+      setLoading(false);
+    }
   };
   return (
     <>
@@ -244,7 +281,10 @@ const RegisterPage = () => {
                 </div>
 
                 <div className="col-span-6  sm:items-center sm:gap-2">
-                  <FormSubmitBtnComponent submitTitle="Create account" />
+                  <FormSubmitBtnComponent
+                    submitTitle="Create account"
+                    loading={loading}
+                  />
 
                   <p className="mt-4 text-sm text-center text-gray-500 sm:mt-2">
                     Already have an account?
