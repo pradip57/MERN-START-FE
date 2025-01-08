@@ -7,7 +7,10 @@ export interface UserProps {
 }
 
 const HeaderComponent = () => {
-  const [user] = useState<UserProps>();
+
+
+  
+  const [user, setUser] = useState<UserProps>();
 
   return (
     <>

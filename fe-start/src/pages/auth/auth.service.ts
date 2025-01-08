@@ -5,7 +5,12 @@ import { RegisterDataType } from "./register/register.pages";
 class AuthService extends BaseHttpService {
   login = async (data: CredentialsType) => {
     try {
-      const response = await this.postRequest("/auth/login", data);
+      const { data: response } = await this.postRequest("/auth/login", data); //data destruct from response
+
+      localStorage.setItem("accesstoken", response.result.token.accessToken);
+      localStorage.setItem("refreshtoken", response.result.token.refreshToken);
+
+      return response;
     } catch (exception) {
       throw exception;
     }
@@ -14,8 +19,35 @@ class AuthService extends BaseHttpService {
   register = async (data: RegisterDataType) => {
     try {
       const response = await this.postRequest("/auth/register", data, {
-        file: true
+        file: true,
       });
+      return response;
+    } catch (exception) {
+      throw exception;
+    }
+  };
+  activateUser = async (token: string) => {
+    try {
+      const response = await this.getRequest("/auth/activate/" + token);
+      return response;
+    } catch (exception) {
+      throw exception;
+    }
+  };
+  resendActivationToken = async (token: string) => {
+    try {
+      const response = await this.getRequest(
+        "/auth/re-send/activation/" + token
+      );
+      return response;
+    } catch (exception) {
+      throw exception;
+    }
+  };
+
+  getLoggedInUser = async () => {
+    try {
+      const response = await this.getRequest("/auth/me", { auth: true });
       return response;
     } catch (exception) {
       throw exception;

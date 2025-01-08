@@ -1,13 +1,13 @@
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import FormLabelComponent from "../../../components/common/form/label/form-label.components";
 import FormSubmitBtnComponent from "../../../components/common/form/submit-button/form-submit-btn.components";
 
-import axiosInstance from "../../../config/axios.config";
 import { toast } from "react-toastify";
 import authSvc from "../auth.service";
+import { useEffect, useState } from "react";
 
 export type CredentialsType = {
   email: string;
@@ -20,6 +20,10 @@ const LoginPage = () => {
     password: yup.string().min(8).required(),
   });
 
+  const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -27,14 +31,32 @@ const LoginPage = () => {
   } = useForm({ resolver: yupResolver(loginDTO) });
 
   const submitEvent = async (credentials: CredentialsType) => {
+    setLoading(true);
     try {
-      
       const response = await authSvc.login(credentials);
-      console.log(response);
+      toast.success(response.message);
+      navigate("/" + response.result.detail.role);
     } catch (exception: any) {
       toast.error(exception.data.message);
+    } finally {
+      setLoading(false);
     }
   };
+
+  const loginCheck = async () => {
+    try {
+      const { data } = await authSvc.getLoggedInUser();
+      toast.info("You are already logged In");
+      navigate("/" + data.result.role);
+    } catch (exception) {
+      console.log(exception);
+    }
+  };
+
+  useEffect(() => {
+    loginCheck();
+  }, []);
+
   return (
     <>
       <section className="bg-gray-100 dark:bg-gray-900">
@@ -94,7 +116,10 @@ const LoginPage = () => {
                     Forgot password?
                   </a>
                 </div>
-                <FormSubmitBtnComponent submitTitle="Sign In" />
+                <FormSubmitBtnComponent
+                  submitTitle="Sign In"
+                  loading={loading}
+                />
                 <p className="text-sm text-center font-light text-gray-500 dark:text-gray-400">
                   Don’t have an account yet?{" "}
                   <NavLink

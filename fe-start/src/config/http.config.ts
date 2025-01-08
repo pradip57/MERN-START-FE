@@ -1,6 +1,6 @@
 import axiosInstance from "./axios.config";
 
-export type AxiosConfigType = { file?: boolean };
+export type AxiosConfigType = { file?: boolean; auth?: boolean };
 abstract class BaseHttpService {
   #headers = {};
 
@@ -9,6 +9,17 @@ abstract class BaseHttpService {
       this.#headers = {
         ...this.#headers,
         "Content-Type": "multipart/form-data",
+      };
+    }
+
+    if (config && Object.prototype.hasOwnProperty.call(config, "auth")) {
+      const token = localStorage.getItem("accesstoken") || null;
+      if (!token) {
+        throw { status: 401, message: "Login Required" };
+      }
+      this.#headers = {
+        ...this.#headers,
+        Authorization: "Bearer " + token,
       };
     }
   };

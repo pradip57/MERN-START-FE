@@ -1,5 +1,5 @@
 //
-const FormSubmitBtnComponent = ({ submitTitle,loading }: { submitTitle: string,loading:boolean }) => {
+const FormSubmitBtnComponent = ({ submitTitle,loading }: { submitTitle: string,loading?:boolean }) => {
   return (
     <>
       <button
