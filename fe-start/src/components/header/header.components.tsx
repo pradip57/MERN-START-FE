@@ -1,16 +1,19 @@
-import { useState } from "react";
+import { useContext } from "react";
 import HomeNavItemsComponents from "../../components/common/home-nav-items/home-nav-items.components";
-import { NavLink } from "react-router-dom";
-
-export interface UserProps {
-  name: string;
-}
+import { NavLink, useNavigate } from "react-router-dom";
+import AuthContext from "../../context/auth.context";
 
 const HeaderComponent = () => {
+  const auth: any = useContext(AuthContext);
+  const navigate = useNavigate();
 
+  const handleSignOut = () => {
+    
+    localStorage.removeItem("accesstoken");
 
-  
-  const [user, setUser] = useState<UserProps>();
+    // Redirect to login page
+    navigate("/login");
+  };
 
   return (
     <>
@@ -175,7 +178,7 @@ const HeaderComponent = () => {
                     d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
                   />
                 </svg>
-                {user ? user.name : "Account"}
+                {auth && auth.loggedInUser ? auth.loggedInUser.name : "Account"}
                 <svg
                   className="w-4 h-4 text-gray-900 dark:text-white ms-1"
                   aria-hidden="true"
@@ -195,7 +198,7 @@ const HeaderComponent = () => {
                 </svg>
               </button>
 
-              {user ? (
+              {auth && auth.loggedInUser ? (
                 <>
                   <div
                     id="userDropdown1"
@@ -203,14 +206,14 @@ const HeaderComponent = () => {
                   >
                     <ul className="p-2 text-start text-sm font-medium text-gray-900 dark:text-white">
                       <li>
-                        <a
-                          href="#"
+                        <NavLink
+                          to="/admin"
                           title=""
                           className="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
                         >
                           {" "}
-                          My Account{" "}
-                        </a>
+                          Admin Panel{" "}
+                        </NavLink>
                       </li>
                       <li>
                         <a
@@ -266,7 +269,8 @@ const HeaderComponent = () => {
 
                     <div className="p-2 text-sm font-medium text-gray-900 dark:text-white">
                       <a
-                        href="#"
+                        onClick={handleSignOut}
+                        href=""
                         title=""
                         className="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
                       >

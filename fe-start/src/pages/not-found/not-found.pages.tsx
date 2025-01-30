@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-const NotFoundPage = () => {
+const NotFoundPage = ({link}:{link:any}) => {
   return (
     <>
       <section className="bg-white dark:bg-gray-900">
@@ -17,7 +17,7 @@ const NotFoundPage = () => {
               home page.{" "}
             </p>
             <NavLink
-              to="/"
+              to={link}
               className="inline-flex text-white bg-teal-600 hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-teal-900 my-4"
             >
               Back to Homepage

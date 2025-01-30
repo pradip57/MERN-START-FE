@@ -13,8 +13,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import TextAreaComponent from "../../../components/common/form/text-area/text-area.components";
 import { toast } from "react-toastify";
 import authSvc from "../auth.service";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { setErrorMsg } from "../../../config/helper.config";
+import AuthContext from "../../../context/auth.context";
 
 export type RegisterDataType = {
   name: string;
@@ -30,6 +31,8 @@ export type RegisterDataType = {
 const RegisterPage = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  const auth: any = useContext(AuthContext);
   const registerDTO = Yup.object({
     name: Yup.string().min(2).required(),
     email: Yup.string().email().required(),
@@ -78,6 +81,25 @@ const RegisterPage = () => {
       setLoading(false);
     }
   };
+
+  const loginCheck = async () => {
+    try {
+      if (auth.loggedInUser) {
+        toast.info("You are already Registered");
+        navigate("/" + auth.loggedInUser.role);
+      }
+    } catch (exception) {
+      console.log(exception);
+    }
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem("accesstoken") || null;
+
+    if (token) {
+      loginCheck();
+    }
+  }, [auth]);
   return (
     <>
       <section className="bg-gray-100">

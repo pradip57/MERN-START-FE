@@ -7,7 +7,8 @@ import FormSubmitBtnComponent from "../../../components/common/form/submit-butto
 
 import { toast } from "react-toastify";
 import authSvc from "../auth.service";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import AuthContext from "../../../context/auth.context";
 
 export type CredentialsType = {
   email: string;
@@ -23,6 +24,7 @@ const LoginPage = () => {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
+  const auth: any = useContext(AuthContext);
 
   const {
     register,
@@ -45,17 +47,22 @@ const LoginPage = () => {
 
   const loginCheck = async () => {
     try {
-      const { data } = await authSvc.getLoggedInUser();
-      toast.info("You are already logged In");
-      navigate("/" + data.result.role);
+      if (auth.loggedInUser) {
+        toast.info("You are already logged In");
+        navigate("/" + auth.loggedInUser.role);
+      }
     } catch (exception) {
       console.log(exception);
     }
   };
 
   useEffect(() => {
-    loginCheck();
-  }, []);
+    const token = localStorage.getItem("accesstoken") || null;
+
+    if (token) {
+      loginCheck();
+    }
+  }, [auth]);
 
   return (
     <>

@@ -1,5 +1,42 @@
-import { createContext } from "react";
+import { createContext, useEffect, useState } from "react";
+import authSvc from "../pages/auth/auth.service";
 
-const AuthContext = createContext({})
+const AuthContext = createContext({});
 
-export default AuthContext
+export type AuthData = {
+  loggedInUser: any;
+  setLoggedInUser: any;
+};
+
+export const AuthProvider = ({ children }: { children: any }) => {
+  const [loggedInUser, setLoggedInUser] = useState<any>();
+
+  const loginCheck = async () => {
+    try {
+      const { data } = await authSvc.getLoggedInUser();
+      setLoggedInUser(data.result);
+    } catch (exception) {
+      console.log(exception);
+    }
+  };
+
+  useEffect(() => {
+    loginCheck();
+  }, []);
+  return (
+    <>
+      <AuthContext.Provider
+        value={
+          {
+            loggedInUser: loggedInUser,
+            setLoggedInUser: setLoggedInUser,
+          } as AuthData
+        }
+      >
+        {children}
+      </AuthContext.Provider>
+    </>
+  );
+};
+
+export default AuthContext;

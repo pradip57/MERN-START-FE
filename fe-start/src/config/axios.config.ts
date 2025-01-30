@@ -20,9 +20,9 @@ axiosInstance.interceptors.response.use(
     //redirect to specific page with notify with toastify
     if (+exception.status === 401) {
       toast.error("Message here");
-      // localStorage.removeItem("accesstoken")
-      // localStorage.removeItem("refreshtoken")
-      //   window.location.href = "/login";
+      localStorage.removeItem("accesstoken");
+      localStorage.removeItem("refreshtoken");
+      window.location.href = "/login";
     } else if (+exception.status === 403) {
       toast.warning("You dont have permissions Ok");
       window.location.href = "/";

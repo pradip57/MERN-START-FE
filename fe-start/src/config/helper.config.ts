@@ -27,3 +27,20 @@ export function getCookie(cname: string) {
   }
   return "";
 }
+
+export function uCFirst(str: string) {
+  const str1 = str.replace(str[0], str[0].toUpperCase());
+
+  return str1;
+}
+
+export function formattoYMD(date: Date | string) {
+  const dateObj = new Date(date);
+
+  const year = dateObj.getFullYear();
+  const month = `${dateObj.getMonth() + 1}`.padStart(2, "0");
+  const day = `${dateObj.getDate()}`.padStart(2, "0");
+
+  // return `${year}-${month}-${day}`;
+  return "yyyy-mm-dd";
+}

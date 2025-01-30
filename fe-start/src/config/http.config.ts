@@ -1,8 +1,21 @@
 import axiosInstance from "./axios.config";
 
-export type AxiosConfigType = { file?: boolean; auth?: boolean };
+export type AxiosConfigType = {
+  file?: boolean;
+  auth?: boolean;
+
+  params?: PaginationProps;
+};
+
+export type PaginationProps = {
+  page: number;
+  limit: number;
+  search?: string | null;
+};
 abstract class BaseHttpService {
   #headers = {};
+
+  #params = {};
 
   getHeaders = (config: AxiosConfigType) => {
     if (config && Object.prototype.hasOwnProperty.call(config, "file")) {
@@ -22,6 +35,10 @@ abstract class BaseHttpService {
         Authorization: "Bearer " + token,
       };
     }
+
+    if (config && Object.prototype.hasOwnProperty.call(config, "params")) {
+      this.#params = { ...this.#params, ...config.params };
+    }
   };
 
   postRequest = async (
@@ -33,6 +50,7 @@ abstract class BaseHttpService {
       this.getHeaders(config);
       const response = await axiosInstance.post(url, data, {
         headers: { ...this.#headers },
+        params: { ...this.#params },
       });
       return response;
     } catch (exception) {
@@ -44,6 +62,7 @@ abstract class BaseHttpService {
       this.getHeaders(config);
       const response = await axiosInstance.get(url, {
         headers: { ...this.#headers },
+        params: { ...this.#params },
       });
       return response;
     } catch (exception) {
@@ -59,6 +78,7 @@ abstract class BaseHttpService {
       this.getHeaders(config);
       const response = await axiosInstance.put(url, data, {
         headers: { ...this.#headers },
+        params: { ...this.#params },
       });
       return response;
     } catch (exception) {
@@ -74,6 +94,7 @@ abstract class BaseHttpService {
       this.getHeaders(config);
       const response = await axiosInstance.patch(url, data, {
         headers: { ...this.#headers },
+        params: { ...this.#params },
       });
       return response;
     } catch (exception) {
@@ -85,6 +106,7 @@ abstract class BaseHttpService {
       this.getHeaders(config);
       const response = await axiosInstance.delete(url, {
         headers: { ...this.#headers },
+        params: { ...this.#params },
       });
       return response;
     } catch (exception) {
